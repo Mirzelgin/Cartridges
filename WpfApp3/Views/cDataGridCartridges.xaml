@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="WpfApp3.Views.cDataGridCartridges"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp3.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="247.625" d:DesignWidth="343.029">
+
+    <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Cartridges}" SelectedItem="{Binding SelCartridges}">
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="ИД" Binding="{Binding Path=Id}"/>
+            <DataGridTextColumn Header="Описание" Binding="{Binding Path=Description}"/>
+        </DataGrid.Columns>
+    </DataGrid>
+
+</UserControl>
