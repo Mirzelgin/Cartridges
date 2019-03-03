@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace WpfApp3.ViewModel
 {
@@ -18,24 +15,81 @@ namespace WpfApp3.ViewModel
 
         //MainLog
         private ObservableCollection<Model.MainLog> mainLog;
-        public ObservableCollection<Model.MainLog> MainLog { get { return mainLog; } set { mainLog = value; OnPropertyChanged(); } }
+        public ObservableCollection<Model.MainLog> MainLog
+        {
+            get
+            {
+                return mainLog;
+            }
+            set
+            {
+                mainLog = value;
+                OnPropertyChanged();
+            }
+        }
 
         private Model.MainLog selMainLog = new Model.MainLog();
-        public Model.MainLog SelMainLog { get { return selMainLog; } set { selMainLog = value; OnPropertyChanged(); } }
+        public Model.MainLog SelMainLog
+        {
+            get
+            {
+                return selMainLog;
+            }
+            set
+            {
+                selMainLog = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ObservableCollection<Model.Locations> locations;
-        public ObservableCollection<Model.Locations> Locations { get => locations; set { locations = value; OnPropertyChanged(); } }
+        public ObservableCollection<Model.Locations> Locations
+        {
+            get => locations;
+            set
+            {
+                locations = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ObservableCollection<Model.Devices> devices;
-        public ObservableCollection<Model.Devices> Devices { get => devices; set { devices = value; OnPropertyChanged(); } }
+        public ObservableCollection<Model.Devices> Devices
+        {
+            get => devices;
+            set
+            {
+                devices = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ObservableCollection<Model.Cartridges> cartridges;
-        public ObservableCollection<Model.Cartridges> Cartridges { get => cartridges; set { cartridges = value; OnPropertyChanged(); } }
+        public ObservableCollection<Model.Cartridges> Cartridges
+        {
+            get => cartridges;
+            set
+            {
+                cartridges = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ObservableCollection<Model.DeviceAssociation> DeviceAssociation { get; set; }
 
         private DateTime lastUpdate;
-        public DateTime LastUpdate { get { return lastUpdate; } set { lastUpdate = value; OnPropertyChanged(); } }
+        public DateTime LastUpdate
+        {
+            get
+            {
+                return lastUpdate;
+            }
+            set
+            {
+                lastUpdate = value;
+                OnPropertyChanged();
+            }
+        }
 
         //Загрузка данных из базы
         public void UpdateData()
@@ -44,17 +98,18 @@ namespace WpfApp3.ViewModel
             {
                 using (Model.ModelDB db = new Model.ModelDB())
                 {
-                    MainLog = new ObservableCollection<Model.MainLog>(db.MainLog);
-                    Cartridges = new ObservableCollection<Model.Cartridges>(db.DeviceAssociation.Select(p => p.Cartridges).Distinct());
-                    Devices = new ObservableCollection<Model.Devices>(db.DeviceAssociation.Select(p => p.Devices).Distinct());
-                    Locations = new ObservableCollection<Model.Locations>(db.DeviceAssociation.Select(p => p.Locations).Distinct());
-                    DeviceAssociation = new ObservableCollection<Model.DeviceAssociation>(db.DeviceAssociation);
+                    //MainLog = new ObservableCollection<Model.MainLog>(db.MainLog);
+                    //Cartridges = new ObservableCollection<Model.Cartridges>(db.DeviceAssociation.Select(p => p.Cartridges).Distinct());
+                    //Devices = new ObservableCollection<Model.Devices>(db.DeviceAssociation.Select(p => p.Devices).Distinct());
+                    //Locations = new ObservableCollection<Model.Locations>(db.DeviceAssociation.Select(p => p.Locations).Distinct());
+                    //DeviceAssociation = new ObservableCollection<Model.DeviceAssociation>(db.DeviceAssociation);
                 }
                 LastUpdate = DateTime.Now;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Command UpdateData(), error: " + ex.Message);
+                string message = "Command UpdateData(), error: " + ex.Message;
+                MessageBox.Show(message);
                 return;
             }
         }

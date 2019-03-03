@@ -10,6 +10,7 @@ namespace WpfApp3.Model
         public ModelDB()
             : base(Properties.Settings.Default.ModelDB)
         {
+           
         }
 
         public virtual DbSet<Cartridges> Cartridges { get; set; }

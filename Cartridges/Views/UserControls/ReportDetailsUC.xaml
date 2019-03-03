@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="CartridgesNS.Views.UserControls.ReportDetailsUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CartridgesNS.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <local:ReportDetailsVM/>
+    </UserControl.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid ItemsSource="{Binding CartridgeRefillingDetails}"
+                  SelectedValuePath="{Binding /}"
+                  SelectedValue="{Binding SelRow}"
+                  AutoGenerateColumns="False"
+                  SelectionMode="Single"
+                  IsReadOnly="True"
+                  Grid.Row="0">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер" 
+                                    Binding="{Binding Number}"/>
+                <DataGridTextColumn Header="Дата"
+                                    Binding="{Binding DateTime.Date, Mode=OneWay, StringFormat=\{0:dd.MM.yyyy\}}"/>
+            </DataGrid.Columns>
+
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Редактировать отчёт"/>
+                    <MenuItem Header="Обновить данные"
+                              Command="{Binding UploadDataCommand}"/>
+                    <MenuItem Header="Удалить строку" 
+                              Command="{Binding DeleteRowCommand}"
+                              CommandParameter="{Binding SelRow}"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+        
+    </Grid>
+</UserControl>

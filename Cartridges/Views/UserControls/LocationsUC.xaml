@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="CartridgesNS.Views.UserControls.LocationsUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CartridgesNS.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <local:LocationsVM/>
+    </UserControl.DataContext>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid ItemsSource="{Binding Locations}" 
+                  SelectedItem="{Binding SelRow}"
+                  AutoGenerateColumns="False"
+                  SelectionMode="Single"
+                  IsReadOnly="True"
+                  Grid.Row="0">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Наименование" Width="auto" Binding="{Binding Name}"/>
+            </DataGrid.Columns>
+
+            <DataGrid.InputBindings>
+                <KeyBinding Key="Delete"
+                            Command="{Binding DeleteRowCommand}"/>
+            </DataGrid.InputBindings>
+
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Обновить данные"
+                              Command="{Binding UploadDataCommand}"/>
+                    <MenuItem Header="Удалить строку"
+                              Command="{Binding DeleteRowCommand}"
+                              CommandParameter="{Binding SelRow}"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.Resources>
+                <Style TargetType="TextBox">
+                    <Setter Property="Margin"
+                            Value="1,1,1,1"/>
+                </Style>
+                <Style TargetType="Button">
+                    <Setter Property="Margin"
+                            Value="1,1,1,1"/>
+                </Style>
+            </Grid.Resources>
+
+            <Label Content="Название:"
+                   Grid.Row="0"
+                   Grid.Column="0"/>
+            <TextBox Text="{Binding NewRow.Name}"
+                     Grid.Row="1"
+                     Grid.Column="0"/>
+
+            <Button Content="Очистить"
+                    Command="{Binding ClearRowCommand}"
+                    Grid.Row="0"
+                    Grid.Column="1"/>
+
+            <Button Content="Добавить"
+                    Command="{Binding AddRowCommand}"
+                    Grid.Row="1"
+                    Grid.Column="1"/>
+        </Grid>
+    </Grid>
+</UserControl>

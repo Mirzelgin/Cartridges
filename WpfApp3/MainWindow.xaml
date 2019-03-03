@@ -24,7 +24,7 @@
         
         <views:cDataGridMainLog Grid.Row="1"/>
 
-        <views:NewRecord Grid.Row="2"/>
+        <!--<views:NewRecord Grid.Row="2"/>-->
 
         <views:cStatusBar Grid.Row="3" Grid.ColumnSpan="2"/>
     </Grid>
