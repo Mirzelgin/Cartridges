@@ -3,11 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28527.54
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp3", "WpfApp3\WpfApp3.csproj", "{E016F0C9-4434-42FE-8F72-80CD2A6F07C2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cartridges", "Cartridges\Cartridges.csproj", "{475E8903-D8BA-4F3E-9A86-F97155155BAE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleEF", "ExampleEF\ExampleEF.csproj", "{0D650BC5-F68A-46D2-8574-CCEDFB84FAA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,18 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E016F0C9-4434-42FE-8F72-80CD2A6F07C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E016F0C9-4434-42FE-8F72-80CD2A6F07C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E016F0C9-4434-42FE-8F72-80CD2A6F07C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E016F0C9-4434-42FE-8F72-80CD2A6F07C2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{475E8903-D8BA-4F3E-9A86-F97155155BAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{475E8903-D8BA-4F3E-9A86-F97155155BAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{475E8903-D8BA-4F3E-9A86-F97155155BAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{475E8903-D8BA-4F3E-9A86-F97155155BAE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0D650BC5-F68A-46D2-8574-CCEDFB84FAA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0D650BC5-F68A-46D2-8574-CCEDFB84FAA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0D650BC5-F68A-46D2-8574-CCEDFB84FAA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0D650BC5-F68A-46D2-8574-CCEDFB84FAA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
