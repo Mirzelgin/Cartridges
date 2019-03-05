@@ -14,9 +14,22 @@
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
+
+        <Grid.Resources>
+            <Style TargetType="MenuItem">
+                <Setter Property="Height"
+                        Value="25"/>
+            </Style>
+        </Grid.Resources>
+
+        <Menu Grid.Row="0">
+            <MenuItem Header="Файл">
+            </MenuItem>
+        </Menu>
 
         <DataGrid ItemsSource="{Binding CartridgeRefillingDetails}"
                   SelectedValuePath="{Binding /}"
@@ -24,13 +37,13 @@
                   AutoGenerateColumns="False"
                   SelectionMode="Single"
                   IsReadOnly="True"
-                  Grid.Row="0">
+                  Grid.Row="1">
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Номер" 
-                                    Binding="{Binding Number}"/>
-                <DataGridTextColumn Header="Дата"
-                                    Binding="{Binding DateTime.Date, Mode=OneWay, StringFormat=\{0:dd.MM.yyyy\}}"/>
+                <DataGridTextColumn Header="Наименование работ, услуг" 
+                                    Binding="{Binding Service}"/>
+                <DataGridTextColumn Header="Инвентарный номер"
+                                    Binding="{Binding Device}"/>
             </DataGrid.Columns>
 
             <DataGrid.ContextMenu>
@@ -45,5 +58,75 @@
             </DataGrid.ContextMenu>
         </DataGrid>
 
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.5*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.Resources>
+                <Style TargetType="ComboBox">
+                    <Setter Property="Margin" 
+                            Value="1,1,1,1"/>
+                </Style>
+                <Style TargetType="Button">
+                    <Setter Property="Margin" 
+                            Value="1,1,1,1"/>
+                </Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Margin" 
+                            Value="1,1,1,1"/>
+                </Style>
+            </Grid.Resources>
+
+            <Label Content="Наименование работы, услуги:" 
+                   Grid.Row="0" 
+                   Grid.Column="0"/>
+            <ComboBox ItemsSource="{Binding CartridgeRefillingDetails}" 
+                      DisplayMemberPath="Service"
+                      Text="{Binding NewRow.Service}"
+                      IsEditable="True"
+                      Grid.Row="1" 
+                      Grid.Column="0"/>
+
+            <Label Content="Инвентарный номер:" 
+                   Grid.Row="0" 
+                   Grid.Column="1"/>
+            <ComboBox ItemsSource="{Binding Devices}"
+                      SelectedValuePath="InventoryId" 
+                      SelectedValue="{Binding NewRow.Device, Mode=TwoWay}" 
+                      
+                      Grid.Row="1" 
+                      Grid.Column="1">
+
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} - {1}">
+                                    <Binding Path="Locations.Name"/>
+                                    <Binding Path="Name"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <Button Command="{Binding AddRowCommand}" 
+                    Content="Добавить" 
+                    Grid.Row="1" 
+                    Grid.Column="2"/>
+
+            <Button Command="{Binding ClearRowCommand}" 
+                    Content="Очистить" 
+                    Grid.Row="0" 
+                    Grid.Column="2"/>
+        </Grid>
     </Grid>
 </Window>
