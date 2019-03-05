@@ -27,7 +27,9 @@
         </Grid.Resources>
 
         <Menu Grid.Row="0">
-            <MenuItem Header="Файл">
+            <MenuItem Header="Печать отчёта">
+            </MenuItem>
+            <MenuItem Header="Сохранить отчёт">
             </MenuItem>
         </Menu>
 
@@ -36,12 +38,11 @@
                   SelectedValue="{Binding SelRow}"
                   AutoGenerateColumns="False"
                   SelectionMode="Single"
-                  IsReadOnly="True"
                   Grid.Row="1">
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Наименование работ, услуг" 
-                                    Binding="{Binding Service}"/>
+                <DataGridComboBoxColumn Header="Наименование работ, услуг" 
+                                        ItemsSource="{Binding Service}"/>
                 <DataGridTextColumn Header="Инвентарный номер"
                                     Binding="{Binding Device}"/>
             </DataGrid.Columns>
