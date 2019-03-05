@@ -206,6 +206,9 @@
     <Compile Include="Model\Services.cs" />
     <Compile Include="Other\Exceptions.cs" />
     <Compile Include="Other\Variables.cs" />
+    <Compile Include="ValueConverter\DateTimeToDateConverter.cs" />
+    <Compile Include="ValueConverter\IsNotEmptyStringsConverter.cs" />
+    <Compile Include="ValueConverter\RemoveEmptyItemsConverter.cs" />
     <Compile Include="ViewModel\BaseVM.cs" />
     <Compile Include="ViewModel\CartridgesVM.cs" />
     <Compile Include="ViewModel\DevicesVM.cs" />
@@ -215,6 +218,9 @@
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\ReportDetailsVM.cs" />
     <Compile Include="ViewModel\ReportsVM.cs" />
+    <Compile Include="Views\ReportDetails.xaml.cs">
+      <DependentUpon>ReportDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\CartridgesUC.xaml.cs">
       <DependentUpon>CartridgesUC.xaml</DependentUpon>
     </Compile>
@@ -245,6 +251,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ReportDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UserControls\CartridgesUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

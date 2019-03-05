@@ -22,9 +22,8 @@
         </Grid.Resources>
 
         <Menu Grid.Row="0">
-            <MenuItem Header="Файл"></MenuItem>
-            <!--<MenuItem Header="Справочники"/>
-            <MenuItem Header="Отчёты"/>-->
+            <MenuItem Header="Файл">
+            </MenuItem>
         </Menu>
 
         <TabControl Grid.Row="1">
@@ -33,13 +32,7 @@
             </TabItem>
             
             <TabItem Header="Отчёты">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.7*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                </Grid>
+                <views:ReportsUC/>
             </TabItem>
 
             <TabItem Header="Устройства">
