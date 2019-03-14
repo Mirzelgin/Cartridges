@@ -2,6 +2,8 @@
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
+using System.Windows.Input;
 
 namespace CartridgesNS.ViewModel
 {
@@ -34,7 +36,7 @@ namespace CartridgesNS.ViewModel
             }
         }
 
-        private Model.CartridgeRefillingReports newRow;
+        private Model.CartridgeRefillingReports newRow = new Model.CartridgeRefillingReports() { DateTime = DateTime.Now };
         public Model.CartridgeRefillingReports NewRow
         {
             get
@@ -45,6 +47,19 @@ namespace CartridgesNS.ViewModel
             {
                 newRow = value;
                 OnPropertyChanged();
+            }
+        }
+
+        private ICommand openReportDetailsWindow;
+        public ICommand OpenReportDetailsWindow
+        {
+            get
+            {
+                if (openReportDetailsWindow == null)
+                {
+                    openReportDetailsWindow = new OpenReportDetailsWindowCommand(this);
+                }
+                return openReportDetailsWindow;
             }
         }
 
@@ -80,6 +95,40 @@ namespace CartridgesNS.ViewModel
                 CartridgeRefillingReports = new ObservableCollection<Model.CartridgeRefillingReports>(
                     db.CartridgeRefillingReports.Include("CartridgeRefillingDetails"));
             }
+        }
+    }
+
+    abstract class MyCommand : ICommand
+    {
+        protected ReportsVM _reportsVM;
+
+        public MyCommand(ReportsVM reportsVM)
+        {
+            _reportsVM = reportsVM;
+        }
+
+        public event EventHandler CanExecuteChanged;
+
+        public abstract bool CanExecute(object parameter);
+
+        public abstract void Execute(object parameter);
+    }
+
+    class OpenReportDetailsWindowCommand : MyCommand
+    {
+        public OpenReportDetailsWindowCommand(ReportsVM reportsVM) : base(reportsVM)
+        {
+        }
+        public override bool CanExecute(object parameter)
+        {
+            return true;
+        }
+        public override async void Execute(object parameter)
+        {
+            var displayRootRegistry = (Application.Current as App).displayRootRegistry;
+
+            var reportDetailsVM = new ReportDetailsVM(parameter as Model.CartridgeRefillingReports);
+            await displayRootRegistry.ShowModalPresentation(reportDetailsVM);
         }
     }
 }

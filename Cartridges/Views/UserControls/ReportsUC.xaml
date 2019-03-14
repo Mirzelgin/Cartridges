@@ -27,14 +27,18 @@
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Номер" 
-                                    Binding="{Binding Number}"/>
+                                    Binding="{Binding Number}"
+                                    Width="*"/>
                 <DataGridTextColumn Header="Дата"
-                                    Binding="{Binding DateTime.Date, Mode=OneWay, StringFormat=\{0:dd.MM.yyyy\}}"/>
+                                    Binding="{Binding DateTime.Date, Mode=OneWay, StringFormat=\{0:dd.MM.yyyy\}}"
+                                    Width="2*"/>
             </DataGrid.Columns>
 
             <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Редактировать отчёт"/>
+                    <MenuItem Header="Редактировать отчёт"
+                              Command="{Binding OpenReportDetailsWindow}"
+                              CommandParameter="{Binding SelRow}"/>
                     <MenuItem Header="Обновить данные"
                               Command="{Binding UploadDataCommand}"/>
                     <MenuItem Header="Удалить строку" 

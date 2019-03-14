@@ -49,7 +49,6 @@
 
             <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Редактировать отчёт"/>
                     <MenuItem Header="Обновить данные"
                               Command="{Binding UploadDataCommand}"/>
                     <MenuItem Header="Удалить строку" 
@@ -88,9 +87,9 @@
             <Label Content="Наименование работы, услуги:" 
                    Grid.Row="0" 
                    Grid.Column="0"/>
-            <ComboBox ItemsSource="{Binding CartridgeRefillingDetails}" 
-                      DisplayMemberPath="Service"
-                      Text="{Binding NewRow.Service}"
+            <ComboBox ItemsSource="{Binding Services}"
+                      DisplayMemberPath="Name"
+                      Text="{Binding NewServiceRow}"
                       IsEditable="True"
                       Grid.Row="1" 
                       Grid.Column="0"/>
@@ -109,9 +108,10 @@
                     <DataTemplate>
                         <TextBlock>
                             <TextBlock.Text>
-                                <MultiBinding StringFormat="{}{0} - {1}">
+                                <MultiBinding StringFormat="{}{0} - {1} - {2}">
                                     <Binding Path="Locations.Name"/>
                                     <Binding Path="Name"/>
+                                    <Binding Path="InventoryId"/>
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>

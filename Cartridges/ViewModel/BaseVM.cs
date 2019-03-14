@@ -13,15 +13,8 @@ namespace CartridgesNS.ViewModel
     {
         public ObservableCollection<Model.MainLog> MainLog
         {
-            get
-            {
-                return Other.Variables.mainLog;
-            }
-            set
-            {
-                Other.Variables.mainLog = value;
-                OnPropertyChanged();
-            }
+            get => Other.Variables.mainLog;
+            set => Other.Variables.mainLog = value;
         }
 
         public ObservableCollection<Model.Devices> Devices
@@ -63,7 +56,6 @@ namespace CartridgesNS.ViewModel
                 OnPropertyChanged();
             }
         }
-
 
 
         private RelayCommand uploadDataCommand;

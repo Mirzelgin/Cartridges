@@ -204,6 +204,7 @@
     <Compile Include="Model\Locations.cs" />
     <Compile Include="Model\MainLog.cs" />
     <Compile Include="Model\Services.cs" />
+    <Compile Include="Other\DisplayRootRegistry.cs" />
     <Compile Include="Other\Exceptions.cs" />
     <Compile Include="Other\Variables.cs" />
     <Compile Include="ValueConverter\DateTimeToDateConverter.cs" />

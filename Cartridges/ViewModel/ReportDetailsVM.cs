@@ -8,17 +8,20 @@ namespace CartridgesNS.ViewModel
 {
     class ReportDetailsVM : BaseVM
     {
-        public ObservableCollection<Model.CartridgeRefillingDetails> CartridgeRefillingDetails
+        private Model.CartridgeRefillingReports row;
+        public ReportDetailsVM(Model.CartridgeRefillingReports Row)
         {
-            get
-            {
-                return Other.Variables.cartridgeRefillingDetails;
-            }
-            set
-            {
-                Other.Variables.cartridgeRefillingDetails = value;
-            }
+            row = Row;
+            ClearRow();
+            UploadData();
         }
+        public ReportDetailsVM()
+        {
+
+        }
+
+        public ObservableCollection<Model.CartridgeRefillingDetails> CartridgeRefillingDetails { get; set; }
+        public ObservableCollection<Model.Services> Services { get; set; }
 
         private Model.CartridgeRefillingDetails selRow;
         public Model.CartridgeRefillingDetails SelRow
@@ -48,24 +51,67 @@ namespace CartridgesNS.ViewModel
             }
         }
 
+        private string newServiceRow;
+        public string NewServiceRow
+        {
+            get
+            {
+                return newServiceRow;
+            }
+            set
+            {
+                newServiceRow = value;
+                OnPropertyChanged();
+            }
+        }
+
         public override void AddRow()
         {
-            throw new NotImplementedException();
+            using (Model.BaseContext db = new Model.BaseContext())
+            {
+                if (Services != null && !Services.Any<Model.Services>(p => p.Name == NewServiceRow))
+                {
+                    NewRow.Service = Services.Single(p => p.Name == NewServiceRow).Id;                    
+                }
+                else
+                {
+                    db.Services.Add(new Model.Services() { Name = NewServiceRow });
+                    db.SaveChanges();
+
+                    UploadData();
+
+                    NewRow.Id = Services.Single<Model.Services>(p => p.Name == NewServiceRow).Id;
+                }
+
+                db.CartridgeRefillingDetails.Add(NewRow);
+                db.SaveChanges();
+            }
         }
 
         public override void ClearRow()
         {
-            throw new NotImplementedException();
+            NewRow = new Model.CartridgeRefillingDetails() { Report = row.Id };
+            NewServiceRow = "";
         }
 
         public override void DeleteRow(object obj)
         {
-            throw new NotImplementedException();
+            Model.CartridgeRefillingDetails dRow = (obj as Model.CartridgeRefillingDetails);
+            using (Model.BaseContext db = new Model.BaseContext())
+            {
+                db.CartridgeRefillingDetails.Remove(db.CartridgeRefillingDetails.Find(dRow.Id));
+                db.SaveChanges();
+            }
         }
 
         public override void UploadData()
         {
-            throw new NotImplementedException();
+            using (Model.BaseContext db = new Model.BaseContext())
+            {
+                CartridgeRefillingDetails = new ObservableCollection<Model.CartridgeRefillingDetails>(
+                    db.CartridgeRefillingDetails.Include("Services").Where(p => p.Report == row.Id));
+                Services = new ObservableCollection<Model.Services>(db.Services);
+            }
         }
     }
 }

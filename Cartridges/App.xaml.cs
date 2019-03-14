@@ -11,6 +11,15 @@ namespace CartridgesNS
     /// </summary>
     public partial class App : Application
     {
+        public Other.DisplayRootRegistry displayRootRegistry = new Other.DisplayRootRegistry();
+        ViewModel.MainWindowVM mainWindowVM;
+
+        public App()
+        {
+            displayRootRegistry.RegisterWindowType<ViewModel.MainWindowVM, MainWindow>();
+            displayRootRegistry.RegisterWindowType<ViewModel.ReportDetailsVM, Views.ReportDetails>();
+        }
+
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             try
@@ -21,6 +30,7 @@ namespace CartridgesNS
                     Other.Variables.devices = new ObservableCollection<Model.Devices>(db.Devices);
                     Other.Variables.cartridges = new ObservableCollection<Model.Cartridges>(db.Cartridges);
                     Other.Variables.locations = new ObservableCollection<Model.Locations>(db.Locations);
+                    Other.Variables.cartridgeRefillingReports = new ObservableCollection<Model.CartridgeRefillingReports>(db.CartridgeRefillingReports);
                 }
             }
             catch (Exception ex)
