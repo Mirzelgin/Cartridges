@@ -16,7 +16,7 @@
         <converters:RemoveEmptyItemsConverter x:Key="removeEmptyItemsConverter"/>
         <converters:IsNotEmptyStringsConverter x:Key="isNotEmptyStringsConverter"/>
     </UserControl.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -24,13 +24,12 @@
         </Grid.RowDefinitions>
 
         <DataGrid ItemsSource="{Binding MainLog}"
-                  SelectedValuePath="{Binding /}"
                   SelectedValue="{Binding SelRow}"
                   AutoGenerateColumns="False"
                   SelectionMode="Single"
                   IsReadOnly="True"
                   Grid.Row="0">
-            
+
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Дата" 
                                     Width="auto" 
@@ -66,7 +65,6 @@
         </DataGrid>
 
         <Grid Grid.Row="1">
-
             <Grid.Resources>
                 <Style TargetType="ComboBox">
                     <Setter Property="Margin" 

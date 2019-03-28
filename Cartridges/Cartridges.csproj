@@ -206,10 +206,12 @@
     <Compile Include="Model\Services.cs" />
     <Compile Include="Other\DisplayRootRegistry.cs" />
     <Compile Include="Other\Exceptions.cs" />
+    <Compile Include="Other\IContentChanger.cs" />
     <Compile Include="Other\Variables.cs" />
     <Compile Include="ValueConverter\DateTimeToDateConverter.cs" />
     <Compile Include="ValueConverter\IsNotEmptyStringsConverter.cs" />
     <Compile Include="ValueConverter\RemoveEmptyItemsConverter.cs" />
+    <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BaseVM.cs" />
     <Compile Include="ViewModel\CartridgesVM.cs" />
     <Compile Include="ViewModel\DevicesVM.cs" />
